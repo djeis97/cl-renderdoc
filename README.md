@@ -20,7 +20,7 @@ Now you should be ready to call any functions exposed by the renderdoc API on yo
 ## If you use Slime or Sly
 
 After step 1 you can load slynk or swank into your image, launch a server, and connect to it from emacs.
-All that matters is lisp is launch with renderdoccmd and cl-renderdoc is loaded before you load *anything* that tries to link GL.
+All that matters is lisp is launched with renderdoccmd and cl-renderdoc is loaded before you load *anything* that tries to link GL.
 
 For example, on sly/slynk that would be
 
