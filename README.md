@@ -12,7 +12,7 @@ renderdoccmd capture -w sbcl
 (asdf:load-system :cl-renderdoc)
 ```
 
-3. Load something which uses GL (No help here, just do what you would do normally to lanuch your window and get a GL context)
+3. Load something which uses GL (No help here, just do what you would do normally to launch your window and get a GL context)
 4. Create a window with a GL context (see above)
 
 Now you should be ready to call any functions exposed by the renderdoc API on your GL main thread.
@@ -37,3 +37,5 @@ There are only three functions currently wrapped:
 I have only tested calling them on the thread holding my GL context, but they do not block. All three can be called
 without any arguments and should "just work". `trigger-capture` will record any GL commands for the current frame,
 `launch-replay-ui` will open the renderdoc capture inspector attached to the current process.
+
+Wrapping additional functions is more tedious than difficult- cl-autowrap has done a decent chunk of the work, but each function still needs to have a little bit of additional glue code written due to the design of the underlying api.
