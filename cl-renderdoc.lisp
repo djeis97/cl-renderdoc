@@ -25,9 +25,9 @@
 				  :pointer (c-aptr i 1 :int)
 				  :pointer (c-aptr i 2 :int)
 				  :void)
-    (cl:values (c-aref i 0 :int)
-	       (c-aref i 1 :int)
-	       (c-aref i 2 :int))))
+    (values (c-aref i 0 :int)
+            (c-aref i 1 :int)
+            (c-aref i 2 :int))))
 
 (defun launch-replay-ui (&optional (renderdoc-api-handle *renderdoc-api-handle*))
   (cffi:foreign-funcall-pointer (renderdoc-api-1-3-0.launch-replay-ui renderdoc-api-handle) ()
