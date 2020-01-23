@@ -1,6 +1,12 @@
 # cl-renderdoc
 Wrappers for the renderdoc in application api
 
+## Overview
+This library is neither necessary nor sufficient for getting started using renderdoc with lisp,
+although the [getting set up] section provides some high-level instructions for that. All this library
+does is wrap the [in-application API](https://renderdoc.org/docs/in_application_api.html), which
+allows some programmatic control over renderdoc from inside your lisp code.
+
 ## Getting set up:
 
 1. Launch your lisp with renderdoccmd
@@ -32,8 +38,12 @@ and then connect using `M-x sly-connect`. Ought to be the same for slime/swank, 
 
 ## Wrapped functions
 
-There are only three functions currently wrapped:
-`cl-renderdoc:get-api-version`, `cl-renderdoc:trigger-capture`, and `cl-renderdoc:launch-replay-ui`.
+There are only a few functions currently wrapped:
+- `cl-renderdoc:get-api-version` (GetAPIVersion): Returns the current API version
+- `cl-renderdoc:trigger-capture` (TriggerCapture): Triggers a capture of the next complete frame
+- `cl-renderdoc:launch-replay-ui` (LaunchReplayUI): Start the graphical capture inspector attached to this process
+- `cl-renderdoc:get-overlay-bits` (GetOverlayBits): Get the flags describing the current state of the overlay
+- `cl-renderdoc:mask-overlay-bits` (MaskOverlayBits): Enable/disable parts of the overlay
 I have only tested calling them on the thread holding my GL context, but they do not block. All three can be called
 without any arguments and should "just work". `trigger-capture` will record any GL commands for the current frame,
 `launch-replay-ui` will open the renderdoc capture inspector attached to the current process.

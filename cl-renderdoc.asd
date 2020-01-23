@@ -1,9 +1,9 @@
 ;;;; cl-renderdoc.asd
 
 (asdf:defsystem #:cl-renderdoc
-  :description "Describe cl-renderdoc here"
-  :author "Your Name <your.name@example.com>"
-  :license  "Specify license here"
+  :description "Wrapper around the renderdoc In-Application API for Common Lisp"
+  :author "Elijah Malaby <emalaby@mail.usf.edu>"
+  :license  "MIT"
   :version "0.0.1"
   :serial t
   :depends-on (#:cl-autowrap)
