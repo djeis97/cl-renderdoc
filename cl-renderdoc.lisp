@@ -50,7 +50,9 @@
   (logand +e-renderdoc-overlay-all+ (lognot (cffi:foreign-bitfield-value 'overlay-flags bits))))
 
 (defun get-overlay-bits (&optional (renderdoc-api-handle *renderdoc-api-handle*))
-  (cffi:foreign-funcall-pointer (renderdoc-api-1-3-0.get-overlay-bits renderdoc-api-handle) () :int))
+  (cffi:foreign-bitfield-symbols
+   'cl-renderdoc:overlay-flags
+   (cffi:foreign-funcall-pointer (renderdoc-api-1-3-0.get-overlay-bits renderdoc-api-handle) () :int)))
 
 (defun mask-overlay-bits (ands ors &optional (renderdoc-api-handle *renderdoc-api-handle*))
   (cffi:foreign-funcall-pointer (renderdoc-api-1-3-0.mask-overlay-bits renderdoc-api-handle) ()
