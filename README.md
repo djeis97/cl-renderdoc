@@ -10,6 +10,11 @@ allows some programmatic control over renderdoc from inside your lisp code.
 ## Getting set up:
 
 1. Launch your lisp with renderdoccmd
+In order to use renderdoc properly it needs to intercept calls to other 3D graphics APIs. To that
+end, you have to launch your lisp using renderdoc's wrapper to ensure that everything is set up
+properly (this does not seem to be necessary just to load the foreign library used by this project,
+but without it renderdoc is unlikely to be able to serve as a graphical debugging aid).
+
 ```sh
 renderdoccmd capture -w sbcl
 ```
@@ -25,16 +30,8 @@ Now you should be ready to call any functions exposed by the renderdoc API on yo
 
 ## If you use Slime or Sly
 
-After step 1 you can load slynk or swank into your image, launch a server, and connect to it from emacs.
-All that matters is lisp is launched with renderdoccmd and cl-renderdoc is loaded before you load *anything* that tries to link GL.
-
-For example, on sly/slynk that would be
-
-```lisp
-(ql:quickload :slynk)
-(slynk:create-server :port 4005 :interface "localhost" :style :spawn)
-```
-and then connect using `M-x sly-connect`. Ought to be the same for slime/swank, but I have not used them in a while.
+The command given in step 1 works as a lisp implementation command for sly at least. At this time
+passing it directly to slime has not been tested.
 
 ## Wrapped functions
 
