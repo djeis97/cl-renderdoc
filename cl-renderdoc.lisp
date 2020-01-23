@@ -18,6 +18,15 @@
 
 (cl:in-package :cl-renderdoc)
 
+(cffi:defbitfield overlay-flags
+  (:capture-list #.+e-renderdoc-overlay-capture-list+)
+  (:frame-number #.+e-renderdoc-overlay-frame-number+)
+  (:frame-rate #.+e-renderdoc-overlay-frame-rate+)
+  (:all #.+e-renderdoc-overlay-all+)
+  (:none #.+e-renderdoc-overlay-none+)
+  (:default #.+e-renderdoc-overlay-default+)
+  (:enabled #.+e-renderdoc-overlay-enabled+))
+
 (defun get-api-version (&optional (renderdoc-api-handle *renderdoc-api-handle*))
   (with-alloc (i :int 3)
     (cffi:foreign-funcall-pointer (renderdoc-api-1-3-0.get-api-version renderdoc-api-handle) ()
@@ -36,5 +45,17 @@
 
 (defun trigger-capture (&optional (renderdoc-api-handle *renderdoc-api-handle*))
   (cffi:foreign-funcall-pointer (renderdoc-api-1-3-0.trigger-capture renderdoc-api-handle) () :void))
+
+(defun negative-overlay-mask (&rest bits)
+  (logand +e-renderdoc-overlay-all+ (lognot (cffi:foreign-bitfield-value 'overlay-flags bits))))
+
+(defun get-overlay-bits (&optional (renderdoc-api-handle *renderdoc-api-handle*))
+  (cffi:foreign-funcall-pointer (renderdoc-api-1-3-0.get-overlay-bits renderdoc-api-handle) () :int))
+
+(defun mask-overlay-bits (ands ors &optional (renderdoc-api-handle *renderdoc-api-handle*))
+  (cffi:foreign-funcall-pointer (renderdoc-api-1-3-0.mask-overlay-bits renderdoc-api-handle) ()
+                                overlay-flags ands
+                                overlay-flags ors
+                                :void))
 
 

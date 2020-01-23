@@ -7,4 +7,6 @@
 
 (defpackage #:cl-renderdoc
   (:use #:cl #:autowrap #:cl-renderdoc-int)
-  (:export #:get-api-version #:launch-replay-ui #:trigger-capture))
+  (:export #:get-api-version #:launch-replay-ui #:trigger-capture
+           #:overlay-flags #:mask-overlay-bits #:negative-overlay-mask
+           #:get-overlay-bits))
