@@ -3,7 +3,7 @@ Wrappers for the renderdoc in application api
 
 ## Overview
 This library is neither necessary nor sufficient for getting started using renderdoc with lisp,
-although the [getting set up] section provides some high-level instructions for that. All this library
+although the getting set up section provides some high-level instructions for that. All this library
 does is wrap the [in-application API](https://renderdoc.org/docs/in_application_api.html), which
 allows some programmatic control over renderdoc from inside your lisp code.
 
