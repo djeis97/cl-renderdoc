@@ -41,7 +41,9 @@ There are only a few functions currently wrapped:
 - `cl-renderdoc:launch-replay-ui` (LaunchReplayUI): Start the graphical capture inspector attached to this process
 - `cl-renderdoc:get-overlay-bits` (GetOverlayBits): Get the flags describing the current state of the overlay
 - `cl-renderdoc:mask-overlay-bits` (MaskOverlayBits): Enable/disable parts of the overlay
-I have only tested calling them on the thread holding my GL context, but they do not block. All three can be called
+
+
+I have only tested calling them on the thread holding my GL context, but they do not block. The first four can be called
 without any arguments and should "just work". `trigger-capture` will record any GL commands for the current frame,
 `launch-replay-ui` will open the renderdoc capture inspector attached to the current process.
 
